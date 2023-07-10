@@ -13,7 +13,12 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Set;
 
 public class InventoryUtils {
-    private static final ItemStack glass = GUIUtils.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, " ");
+    public static final ItemStack glass = GUIUtils.createItem(Material.BLACK_STAINED_GLASS_PANE, 1, " ");
+    public static final ItemStack close = GUIUtils.createItem(Material.BARRIER, 1, "&c닫기");
+    public static final ItemStack next = GUIUtils.createItem(Material.ARROW, 1, "&aNext Page ➡");
+    public static final ItemStack last =  GUIUtils.createItem(Material.ARROW, 1, "&eLast Page »");
+    public static final ItemStack previous = GUIUtils.createItem(Material.ARROW, 1, "&a⬅ Previous Page");
+    public static final ItemStack first = GUIUtils.createItem(Material.ARROW, 1, "&e« First Page");
 
     public static Inventory build(FileConfiguration yml, int page, int lines) {
         ConfigurationSection section = yml.getConfigurationSection("items." + page);
@@ -24,15 +29,17 @@ public class InventoryUtils {
         int maxPage = (int) Math.ceil(lines / 5d);
         Inventory inventory = Bukkit.createInventory(null, 9 + 9 * getEnderChestPageLine(page, lines), "Backpack (" + page + "/" + maxPage + ")");
 
+        for (int i = 0; i < 9; i++) inventory.setItem(i, glass);
+        inventory.setItem(0, close);
 
         if (page < maxPage) {
-            inventory.setItem(7, GUIUtils.createItem(Material.ARROW, 1, "&aNext Page ➡"));
-            inventory.setItem(8, GUIUtils.createItem(Material.ARROW, 1, "&eLast Page »"));
+            inventory.setItem(7, next);
+            inventory.setItem(8, last);
         }
 
         if (page > 1) {
-            inventory.setItem(6, GUIUtils.createItem(Material.ARROW, 1, "&a⬅ Previous Page"));
-            inventory.setItem(5, GUIUtils.createItem(Material.ARROW, 1, "&e« First Page"));
+            inventory.setItem(6, previous);
+            inventory.setItem(5, first);
         }
 
         for (String key : keys) inventory.setItem(Integer.parseInt(key), section.getItemStack(key));
