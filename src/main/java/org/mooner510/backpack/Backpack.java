@@ -9,7 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mooner510.backpack.inventory.backpack.BackpackData;
-import org.mooner510.backpack.inventory.backpack.BackpackEvent;
+import org.mooner510.backpack.inventory.backpackupgrade.BackpackUpgradeSettingGUI;
 
 import java.io.File;
 
@@ -47,7 +47,7 @@ public final class Backpack extends JavaPlugin implements Listener {
             }
             case "backpackupgrade" -> {
                 if(sender instanceof Player p) {
-
+                    new BackpackUpgradeSettingGUI(p);
                 }
             }
         }

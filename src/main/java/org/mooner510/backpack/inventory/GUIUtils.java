@@ -12,8 +12,8 @@ public final class GUIUtils {
     public static ItemStack createItem(Material m, int amount, String name, String... lore) {
         ItemStack i = new ItemStack(m, amount);
         ItemMeta im = i.getItemMeta();
-        if(im != null) {
-            im.setDisplayName(chat(name));
+        if (im != null) {
+            im.setDisplayName(chat("&f" + name));
             im.setLore(Arrays.stream(lore).map(s -> chat("&7" + s)).toList());
             i.setItemMeta(im);
         }
