@@ -6,6 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -47,8 +48,11 @@ public class InventoryUtils {
     }
 
     public static boolean isClicked(InventoryClickEvent event, Inventory inventory, Player viewer) {
-        Inventory inv = event.getClickedInventory();
         ItemStack item = event.getCurrentItem();
-        return viewer.getUniqueId().equals(event.getWhoClicked().getUniqueId()) && inv != null && !inv.equals(inventory) && item != null && item.getType() != Material.AIR;
+        return isOwned(event, inventory, viewer) && event.getClickedInventory() != null && item != null && item.getType() != Material.AIR;
+    }
+
+    public static boolean isOwned(InventoryEvent event, Inventory inventory, Player viewer) {
+        return viewer.getUniqueId().equals(event.getView().getPlayer().getUniqueId()) && !event.getInventory().equals(inventory);
     }
 }
