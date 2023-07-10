@@ -8,7 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.mooner510.backpack.Backpack;
 import org.mooner510.backpack.inventory.InventoryUtils;
-import org.mooner510.backpack.inventory.backpackupgrade.BackpackUpgradeGUI;
 import org.mooner510.backpack.inventory.backpackupgrade.BackpackUpgradeSettingGUI;
 
 import java.io.File;
