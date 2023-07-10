@@ -8,6 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 import org.mooner510.backpack.inventory.backpack.BackpackData;
 import org.mooner510.backpack.inventory.backpackupgrade.BackpackUpgradeSettingGUI;
 
@@ -29,7 +30,9 @@ public final class Backpack extends JavaPlugin implements Listener {
         backpack = this;
         Bukkit.getPluginManager().registerEvents(this, this);
         getLogger().info(chat("Backpack Plugin Enabled!"));
-        new File("/Backpack/data").mkdirs();
+        if (new File("/Backpack/data").mkdirs()) {
+            getLogger().info(chat("A Plugin Directory has been created."));
+        }
     }
 
     @Override
@@ -38,7 +41,7 @@ public final class Backpack extends JavaPlugin implements Listener {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, Command command, @NotNull String label, String[] args) {
         switch (command.getName()) {
             case "backpack" -> {
                 if (sender instanceof Player p) {

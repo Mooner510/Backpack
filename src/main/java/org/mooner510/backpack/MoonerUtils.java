@@ -12,12 +12,16 @@ public final class MoonerUtils {
         return ChatColor.translateAlternateColorCodes('&', str);
     }
 
-    public static FileConfiguration loadConfig(String Path, String File) {
-        new File(Path).mkdirs();
-        File f = new File(Path, File);
-        if(!f.exists()) {
+    public static FileConfiguration loadConfig(String path, String file) {
+        if (new File(path).mkdirs()) {
+            Backpack.getInstance().getLogger().config("The plugin directory was created successfully.");
+        }
+        File f = new File(path, file);
+        if (!f.exists()) {
             try {
-                f.createNewFile();
+                if (f.createNewFile()) {
+                    Backpack.getInstance().getLogger().config("Config in directory " + path + " named by " + file + " was created successfully.");
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

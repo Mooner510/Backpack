@@ -45,9 +45,7 @@ public final class BackpackEvent implements Listener {
         if (slot < 9) {
             event.setCancelled(true);
             switch (slot) {
-                case 0 -> {
-                    viewer.closeInventory();
-                }
+                case 0 -> viewer.closeInventory();
                 case 2 -> new BackpackUpgradeGUI(viewer);
                 case 5 -> {
                     closeSound = false;
