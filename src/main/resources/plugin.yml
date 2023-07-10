@@ -2,3 +2,10 @@ name: Backpack
 version: '${project.version}'
 main: org.mooner510.backpack.Backpack
 api-version: 1.19
+
+commands:
+  backpack:
+    aliases: [가방, 창고]
+  backpackupgrade:
+    aliases: [창고업그레이드, 가방업그레이드]
+    permission: backpack.upgrade
